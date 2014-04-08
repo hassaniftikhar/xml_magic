@@ -1,6 +1,10 @@
 module CommonThread
   module XML
     # Credit to Jim Weirich at http://onestepback.org/index.cgi/Tech/Ruby/BlankSlate.rdoc
+    #adding omit_slots in order to avoid removing core functions such as object_id
+    def self.omit_slots
+      [:__id__, :__send__, :__binding__, :object_id]
+    end
     class BlankSlate
       instance_methods.each { |m| undef_method m unless m =~ /^__/ }
     end    

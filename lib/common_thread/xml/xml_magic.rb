@@ -6,7 +6,7 @@ module CommonThread
       [:__id__, :__send__, :__binding__, :object_id]
     end
     class BlankSlate
-      instance_methods.each { |m| undef_method m unless m =~ /^__/ }
+      instance_methods.each { |m| undef_method m unless omit_slots.include? m.to_sym }
     end    
     
     # Class that makes accessing xml objects more like any other ruby object
